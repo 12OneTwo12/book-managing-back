@@ -1,6 +1,8 @@
 package dev.library.user.presentation;
 
+import dev.library.dto.UserDTO;
 import dev.library.user.application.CreateUserService;
+import dev.library.user.application.ReturnUserService;
 import dev.library.user.domain.User;
 import dev.library.user.domain.UserId;
 import org.slf4j.Logger;
@@ -17,6 +19,10 @@ public class UserController {
 
 //    @Autowired
 //    CreateUserService createUserService;
+
+    @Autowired
+    ReturnUserService returnUserService;
+
     private final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @PostMapping
@@ -28,4 +34,10 @@ public class UserController {
         UserId registeredUserId = new UserId("u-g-0");
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredUserId);
     }
+
+    @PostMapping("/returnUser")
+    public UserDTO returnUser(@RequestBody String userId){
+        return returnUserService.returnUserById(userId);
+    }
+
 }
