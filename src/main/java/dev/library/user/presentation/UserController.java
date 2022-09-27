@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredUserId);
     }
 
-    @PostMapping
+    @PostMapping("/returnUser")
     public UserDTO returnUser(@RequestBody String userId){
         return returnUserService.returnUserById(userId);
     }
