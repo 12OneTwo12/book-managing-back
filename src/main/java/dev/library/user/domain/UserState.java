@@ -40,4 +40,12 @@ public class UserState {
     public boolean isRentable() {
         return rentable;
     }
+
+    public boolean checkCurrentRentedBooks(){ return currentRentedBooks >= 2; }
+
+    public boolean checkRentFreeDateIsEmpty(){ return rentFreeDate != null; }
+
+    public boolean rentFreeDateIsBeforeNow(){ return rentFreeDate.isBefore(LocalDate.now()); }
+
+    public boolean rentableIsChangeOrNot(User user){ return user.getUserState().isRentable() != rentable; }
 }
