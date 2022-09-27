@@ -1,6 +1,7 @@
 package dev.library.user.presentation;
 
 import dev.library.dto.UserDTO;
+import dev.library.dto.UserIdDTO;
 import dev.library.user.application.CreateUserService;
 import dev.library.user.application.ReturnUserService;
 import dev.library.user.domain.User;
@@ -36,8 +37,6 @@ public class UserController {
     }
 
     @PostMapping("/returnUser")
-    public UserDTO returnUser(@RequestBody String userId){
-        return returnUserService.returnUserById(userId);
-    }
+    public UserDTO returnUser(@RequestBody UserIdDTO userIdDTO){ return returnUserService.returnUserById(userIdDTO.getUserId()); }
 
 }
