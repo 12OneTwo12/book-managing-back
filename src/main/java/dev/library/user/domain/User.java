@@ -41,7 +41,6 @@ public class User {
 
     public User checkUserStateAndUpdate(){
 
-        System.out.println("this : "+this);
         // 아이디로 값을 찾게되면
         // TODO : 유저가 대여중인 책 기한 지났는지 확인 후 지나면 대여 불가로 상태 변경 후 return
         // TODO : 유저 상태가 대여 불가라면 현재 RENT_FREE_DATE가 오늘 날짜를 지났는지 확인 후 안지났으면 그냥 반환

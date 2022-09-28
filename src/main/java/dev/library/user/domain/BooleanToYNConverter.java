@@ -18,7 +18,5 @@ public class BooleanToYNConverter implements AttributeConverter<Boolean, String>
     }
 
     @Override
-    public Boolean convertToEntityAttribute(String dbData) {
-        return "Y".equals(dbData);
-    }
+    public Boolean convertToEntityAttribute(String dbData) { return "Y".equals(dbData); }
 }
