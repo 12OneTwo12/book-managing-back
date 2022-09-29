@@ -1,4 +1,4 @@
-package dev.library.user.domain;
+package dev.library.book.domain;
 
 import lombok.ToString;
 
@@ -17,4 +17,7 @@ public class BookId implements Serializable {
 
     public String getId() { return id; }
 
+    public BookId(String id) {
+        this.id = id;
+    }
 }

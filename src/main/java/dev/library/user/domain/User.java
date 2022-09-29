@@ -1,18 +1,12 @@
 package dev.library.user.domain;
 
-import dev.library.dto.UserDTO;
-import dev.library.user.application.ReturnUserService;
-import dev.library.user.repository.UserRepository;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 @Table(name = "users")

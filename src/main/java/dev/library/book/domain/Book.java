@@ -1,4 +1,4 @@
-package dev.library.user.domain;
+package dev.library.book.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -25,4 +25,17 @@ public class Book {
     @Embedded
     private BookState bookState;
 
+    public Book(BookId id, String title, BookState bookState){
+        this.id = id;
+        this.title = title;
+        this.bookState = bookState;
+    }
+
+    public void convertStateToOpposite(){
+        if(this.getBookState().getBookStateEnum() == BookStateEnum.ABLE){
+            this.getBookState().setBookStateEnum(BookStateEnum.UNABLE);
+        } else{
+            this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
+        }
+    }
 }

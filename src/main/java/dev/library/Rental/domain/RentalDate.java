@@ -1,4 +1,4 @@
-package dev.library.user.domain;
+package dev.library.Rental.domain;
 
 import lombok.ToString;
 
