@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,6 +21,8 @@ public class UserDTO {
     private Boolean rentable;
     private LocalDate rentFreeDate;
     private int currentRentedBooks;
+
+    private List<UsersBookRentalInfoDTO> usersBookRentalInfoDTOS;
 
     public static UserDTO entityToDTO(User user){
         return UserDTO.builder().id(user.getId().getId())

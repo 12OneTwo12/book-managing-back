@@ -1,7 +1,7 @@
 package dev.library.user.presentation;
 
 import dev.library.user.dto.UserDTO;
-import dev.library.user.application.ReturnUserService;
+import dev.library.user.application.ReturnUserServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserReturnTest {
 
     @Autowired
-    ReturnUserService returnUserService;
+    ReturnUserServiceImpl returnUserService;
 
     @Test
     public void userReturnTest(){

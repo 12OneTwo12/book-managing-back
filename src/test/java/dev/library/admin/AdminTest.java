@@ -1,6 +1,6 @@
 package dev.library.admin;
 
-import dev.library.admin.application.LoginAdminService;
+import dev.library.admin.application.LoginAdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AdminTest {
 
     @Autowired
-    LoginAdminService loginAdminService;
+    LoginAdminServiceImpl loginAdminService;
 
 //    @Autowired
 //    CreateAdminService createAdminService;

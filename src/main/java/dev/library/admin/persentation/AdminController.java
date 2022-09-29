@@ -1,9 +1,9 @@
 package dev.library.admin.persentation;
 
+import dev.library.admin.application.*;
 import dev.library.admin.dto.AdminDTO;
 import dev.library.admin.dto.AdminIdDTO;
-import dev.library.admin.application.CreateAdminService;
-import dev.library.admin.application.LoginAdminService;
+import dev.library.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -22,6 +22,9 @@ public class AdminController {
 
     @Autowired
     LoginAdminService loginAdminService;
+
+    @Autowired
+    CreateUserByAdminServiceImpl createUserService;
 
     @PostMapping("/login_admin")
     public AdminIdDTO loginAdmin(@RequestBody @Valid AdminDTO adminDTO, Errors errors, HttpSession session){
@@ -56,6 +59,11 @@ public class AdminController {
             return createAdminService.createAdmin(adminDTO);
         }
 
+    }
+
+    @PostMapping("/createUser")
+    public String registerUser(@RequestBody User.Request request) {
+        return createUserService.saveUser(request);
     }
 
 }
