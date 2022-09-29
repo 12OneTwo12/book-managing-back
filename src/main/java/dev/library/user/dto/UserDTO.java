@@ -1,7 +1,6 @@
-package dev.library.dto;
+package dev.library.user.dto;
 
 import dev.library.user.domain.User;
-import dev.library.user.domain.UserState;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

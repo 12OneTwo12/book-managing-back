@@ -1,8 +1,7 @@
 package dev.library.user.presentation;
 
-import dev.library.dto.UserDTO;
-import dev.library.dto.UserIdDTO;
-import dev.library.user.application.CreateUserService;
+import dev.library.user.dto.UserDTO;
+import dev.library.user.dto.UserIdDTO;
 import dev.library.user.application.ReturnUserService;
 import dev.library.user.domain.User;
 import dev.library.user.domain.UserId;

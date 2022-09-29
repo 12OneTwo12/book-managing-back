@@ -1,14 +1,12 @@
 package dev.library.user.application;
 
-import dev.library.dto.UserDTO;
+import dev.library.user.dto.UserDTO;
 import dev.library.user.domain.User;
 import dev.library.user.domain.UserId;
-import dev.library.user.domain.UserState;
 import dev.library.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Service

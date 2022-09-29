@@ -1,10 +1,6 @@
 package dev.library.admin;
 
-import dev.library.dto.AdminDTO;
-import dev.library.dto.AdminIdDTO;
-import dev.library.user.application.CreateAdminService;
-import dev.library.user.application.LoginAdminService;
-import org.junit.jupiter.api.Test;
+import dev.library.admin.application.LoginAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

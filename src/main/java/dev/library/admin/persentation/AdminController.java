@@ -1,9 +1,9 @@
-package dev.library.user.presentation;
+package dev.library.admin.persentation;
 
-import dev.library.dto.AdminDTO;
-import dev.library.dto.AdminIdDTO;
-import dev.library.user.application.CreateAdminService;
-import dev.library.user.application.LoginAdminService;
+import dev.library.admin.dto.AdminDTO;
+import dev.library.admin.dto.AdminIdDTO;
+import dev.library.admin.application.CreateAdminService;
+import dev.library.admin.application.LoginAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
