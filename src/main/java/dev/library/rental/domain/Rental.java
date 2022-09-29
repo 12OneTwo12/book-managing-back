@@ -1,5 +1,7 @@
-package dev.library.user.domain;
+package dev.library.rental.domain;
 
+import dev.library.book.domain.Book;
+import dev.library.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

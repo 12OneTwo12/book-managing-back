@@ -1,5 +1,6 @@
-package dev.library.user.domain;
+package dev.library.rental.domain;
 
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 @Embeddable
 @ToString
+@Getter
 public class RentalDate {
 
     @Column(name = "rent_date")

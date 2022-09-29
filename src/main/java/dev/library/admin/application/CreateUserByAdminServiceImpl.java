@@ -37,14 +37,14 @@ public class CreateUserByAdminServiceImpl implements CreateUserByAdminService {
 
             BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
             generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\J\\Desktop\\project\\202209librarySystem\\librarySystem\\src\\main\\webapp\\resources\\barcodes\\";
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\";
             File file = new File(addrs + newId + ".png");
             try {
                 generator.save(addrs + newId + ".png");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return addrs;
+            return addrs + newId + ".png";
         }
 
     }

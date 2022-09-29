@@ -1,4 +1,4 @@
-package dev.library.user.domain;
+package dev.library.book.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
