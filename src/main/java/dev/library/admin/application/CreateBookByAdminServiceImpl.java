@@ -9,15 +9,19 @@ import dev.library.book.repository.BookRepository;
 import dev.library.user.domain.User;
 import dev.library.user.domain.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.IOException;
 
+@Service
 public class CreateBookByAdminServiceImpl implements CreateBookByAdminService {
 
     @Autowired
     BookRepository bookRepository;
 
+    @Transactional
     @Override
     public String createBook(BookTitleDTO bookTitleDTO) {
 

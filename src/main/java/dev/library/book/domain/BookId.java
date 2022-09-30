@@ -3,6 +3,7 @@ package dev.library.book.domain;
 import com.aspose.barcode.generation.BarcodeGenerator;
 import com.aspose.barcode.generation.EncodeTypes;
 import dev.library.user.domain.UserId;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 
 @Embeddable
 @ToString
+@NoArgsConstructor
 public class BookId implements Serializable {
 
     @Column(name = "book_id")
@@ -33,7 +35,7 @@ public class BookId implements Serializable {
 
             BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
             generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\J\\Desktop\\barcode\\";
+            String addrs = "C:\\Users\\playdata\\Desktop\\barcode\\";
             File file = new File(addrs + newId + ".png");
             try {
                 generator.save(addrs + newId + ".png");

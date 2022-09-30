@@ -51,7 +51,7 @@ public class UserId implements Serializable {
 
             BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
             generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\J\\Desktop\\barcode\\";
+            String addrs = "C:\\Users\\playdata\\Desktop\\barcode\\";
             File file = new File(addrs + newId + ".png");
             try {
                 generator.save(addrs + newId + ".png");
