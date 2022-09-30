@@ -1,9 +1,13 @@
 package dev.library.user.domain;
 
+import com.aspose.barcode.generation.BarcodeGenerator;
+import com.aspose.barcode.generation.EncodeTypes;
 import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -38,4 +42,23 @@ public class UserId implements Serializable {
     }
 
     public static UserId of(String id) { return new UserId(id); }
+
+    public String createBarcodeAndReturn(){
+        if (this.id == null){
+            return null;
+        } else {
+            String newId = this.id;
+
+            BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
+            generator.getParameters().setResolution(400);
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\";
+            File file = new File(addrs + newId + ".png");
+            try {
+                generator.save(addrs + newId + ".png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return addrs + newId + ".png";
+        }
+    }
 }

@@ -3,6 +3,7 @@ package dev.library.admin.persentation;
 import dev.library.admin.application.*;
 import dev.library.admin.dto.AdminDTO;
 import dev.library.admin.dto.AdminIdDTO;
+import dev.library.book.dto.BookTitleDTO;
 import dev.library.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -25,6 +26,9 @@ public class AdminController {
 
     @Autowired
     CreateUserByAdminServiceImpl createUserService;
+
+    @Autowired
+    CreateBookByAdminService createBookByAdminService;
 
     @PostMapping("/login_admin")
     public AdminIdDTO loginAdmin(@RequestBody @Valid AdminDTO adminDTO, Errors errors, HttpSession session){
@@ -64,6 +68,11 @@ public class AdminController {
     @PostMapping("/createUser")
     public String registerUser(@RequestBody User.Request request) {
         return createUserService.saveUser(request);
+    }
+
+    @PostMapping("/createBook")
+    public String registerBook(@RequestBody BookTitleDTO bookTitleDTO){
+        return createBookByAdminService.createBook(bookTitleDTO);
     }
 
 }

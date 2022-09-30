@@ -29,23 +29,7 @@ public class CreateUserByAdminServiceImpl implements CreateUserByAdminService {
         User user = User.Request.toEntity(request);
         User result = userRepository.save(user);
 
-        if (result == null){
-            return null;
-        } else {
-
-            String newId = result.getId().getId();
-
-            BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
-            generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\J\\Desktop\\barcode\\";
-            File file = new File(addrs + newId + ".png");
-            try {
-                generator.save(addrs + newId + ".png");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return addrs + newId + ".png";
-        }
-
+        String barcodeResult = result.getId().createBarcodeAndReturn();
+        return barcodeResult;
     }
 }
