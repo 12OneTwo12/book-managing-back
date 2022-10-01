@@ -20,7 +20,7 @@ public class BookId implements Serializable {
     @Column(name = "book_id")
     private String id;
 
-    public BookId(String id) {this.id = id;}
+    public BookId(String id) { this.id = id; }
 
     public String getId() { return id; }
 
@@ -35,7 +35,7 @@ public class BookId implements Serializable {
 
             BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
             generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\playdata\\Desktop\\barcode\\";
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\book\\";
             File file = new File(addrs + newId + ".png");
             try {
                 generator.save(addrs + newId + ".png");
@@ -43,6 +43,30 @@ public class BookId implements Serializable {
                 e.printStackTrace();
             }
             return addrs + newId + ".png";
+        }
+    }
+
+    public String returnBarcode(){
+        if (this.id == null){
+            return null;
+        } else {
+
+            String newId = this.id;
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\book\\";
+            File file = new File(addrs + newId + ".png");
+
+            if (!file.exists()) {
+                BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
+                generator.getParameters().setResolution(400);
+                try {
+                    generator.save(addrs + newId + ".png");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            return addrs + newId + ".png";
+
         }
     }
 
