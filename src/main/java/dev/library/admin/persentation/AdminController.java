@@ -3,8 +3,10 @@ package dev.library.admin.persentation;
 import dev.library.admin.application.*;
 import dev.library.admin.dto.AdminDTO;
 import dev.library.admin.dto.AdminIdDTO;
+import dev.library.book.dto.BookIdDTO;
 import dev.library.book.dto.BookTitleDTO;
 import dev.library.user.domain.User;
+import dev.library.user.dto.UserIdDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -29,6 +31,9 @@ public class AdminController {
 
     @Autowired
     CreateBookByAdminService createBookByAdminService;
+
+    @Autowired
+    ReturnBarcodeService returnBarcodeService;
 
     @PostMapping("/login_admin")
     public AdminIdDTO loginAdmin(@RequestBody @Valid AdminDTO adminDTO, Errors errors, HttpSession session){
@@ -66,13 +71,44 @@ public class AdminController {
     }
 
     @PostMapping("/createUser")
-    public String registerUser(@RequestBody User.Request request) {
-        return createUserService.saveUser(request);
+    public String registerUser(@RequestBody User.Request request, HttpSession session) {
+
+        if(session.getAttribute("adminId") == null){
+            return null;
+        } else {
+            return createUserService.saveUser(request);
+        }
+
+
     }
 
     @PostMapping("/createBook")
-    public String registerBook(@RequestBody BookTitleDTO bookTitleDTO){
-        return createBookByAdminService.createBook(bookTitleDTO);
+    public String registerBook(@RequestBody BookTitleDTO bookTitleDTO, HttpSession session){
+        session.setAttribute("adminId","admin");
+        if(session.getAttribute("adminId") == null){
+            return null;
+        } else {
+            return createBookByAdminService.createBook(bookTitleDTO);
+        }
+    }
+
+    @PostMapping("/returnUserBarcode")
+    public String returnUserBarcode(@RequestBody UserIdDTO id, HttpSession session){
+        if(session.getAttribute("adminId") == null){
+            return null;
+        } else {
+            System.out.println(id.getUserId());
+            return returnBarcodeService.returnUserBarcode(id.getUserId());
+        }
+    }
+
+    @PostMapping("/returnBookBarcode")
+    public String returnBookBarcode(@RequestBody BookIdDTO id, HttpSession session){
+        if(session.getAttribute("adminId") == null){
+            return null;
+        } else {
+            return returnBarcodeService.returnBookBarcode(id.getBookId());
+        }
     }
 
 }

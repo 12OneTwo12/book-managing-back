@@ -68,7 +68,7 @@ public class UserId implements Serializable {
         } else {
 
             String newId = this.id;
-            String addrs = "C:\\Users\\J\\Desktop\\barcode\\book\\";
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\user\\";
             File file = new File(addrs + newId + ".png");
 
             if (!file.exists()) {
