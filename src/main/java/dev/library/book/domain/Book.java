@@ -38,4 +38,6 @@ public class Book {
             this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
         }
     }
+
+    public static Book toEntity(User.Request request)
 }

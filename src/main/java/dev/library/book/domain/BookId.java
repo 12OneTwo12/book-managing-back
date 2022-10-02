@@ -20,4 +20,6 @@ public class BookId implements Serializable {
     public BookId(String id) {
         this.id = id;
     }
+
+    public static BookId of(String id) {return new BookId(id);}
 }
