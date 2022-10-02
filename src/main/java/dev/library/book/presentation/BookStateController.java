@@ -26,9 +26,9 @@ public class BookStateController {
         return ResponseEntity.ok().body(bookStateService.changeBookState(bookRequest));
     }
 
-    @GetMapping("/bookstate/{}")
-    public ResponseEntity<BookDTO> bookDTOResponseEntity(@RequestParam BookRequest bookRequest){
-        return ResponseEntity.ok().body(returnBookStateService.returnBookStateById(bookRequest.getBookId()));
+    @GetMapping("/bookstate/{id}")
+    public ResponseEntity<BookDTO> bookDTOResponseEntity(@PathVariable("id") String bookId){
+        return ResponseEntity.ok().body(returnBookStateService.returnBookStateById(bookId));
     }
 
 }

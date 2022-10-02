@@ -4,7 +4,7 @@ import dev.library.book.DTO.BookDTO;
 
 public interface ReturnBookStateService {
 
-    BookDTO returnBookStateById(String BookId);
+    BookDTO returnBookStateById(String bookId);
 
 
 }

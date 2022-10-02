@@ -25,19 +25,18 @@ public class Book {
     @Embedded
     private BookState bookState;
 
-    public Book(BookId id, String title, BookState bookState){
+    public Book(BookId id, String title, BookState bookState) {
         this.id = id;
         this.title = title;
         this.bookState = bookState;
     }
 
-    public void convertStateToOpposite(){
-        if(this.getBookState().getBookStateEnum() == BookStateEnum.ABLE){
+    public void convertStateToOpposite() {
+        if (this.getBookState().getBookStateEnum() == BookStateEnum.ABLE) {
             this.getBookState().setBookStateEnum(BookStateEnum.UNABLE);
-        } else{
+        } else {
             this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
         }
     }
 
-    public static Book toEntity(User.Request request)
 }
