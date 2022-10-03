@@ -78,6 +78,28 @@ public class User {
 
     }
 
+    public User afterRentBookUpdateUser() {
+
+        // user 상태 update
+        UserDTO userForUserState = UserDTO.builder().currentRentedBooks(this.getUserState().getCurrentRentedBooks())
+                .rentFreeDate(this.getUserState().getRentFreeDate())
+                .rentable(this.getUserState().isRentable()).build();
+        userForUserState.setCurrentRentedBooks(userForUserState.getCurrentRentedBooks() + 1);
+        if (userForUserState.getCurrentRentedBooks() >= 2) {
+            userForUserState.setRentable(false);
+        }
+        UserState newUserState = new UserState(userForUserState.getCurrentRentedBooks(), userForUserState.getRentFreeDate(),
+                userForUserState.getRentable());
+        User updateUser = User.Request.toEntity(User.Request.builder().userId(this.getId())
+                .name(this.getName())
+                .courseName(this.getCourseName())
+                .userState(newUserState)
+                .build());
+
+        return updateUser;
+
+    }
+
     @Setter @Getter
     @ToString
     @Builder @AllArgsConstructor
