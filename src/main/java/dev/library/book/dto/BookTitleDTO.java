@@ -10,5 +10,9 @@ import lombok.ToString;
 public class BookTitleDTO {
 
     String title;
-
+    public BookTitleDTO() {
+    }
+    public BookTitleDTO(String title) {
+        this.title = title;
+    }
 }

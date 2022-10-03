@@ -1,6 +1,5 @@
 package dev.library.book.domain;
 
-import dev.library.book.dto.BookTitleDTO;
 import lombok.*;
 
 import javax.persistence.Embedded;
@@ -28,6 +27,9 @@ public class Book {
         this.title = title;
         this.bookState = bookState;
     }
+    public static Book createBook(BookId bookId, String title) {
+        return new Book(bookId, title, new BookState(BookStateEnum.ABLE));
+    }
 
     public void convertStateToOpposite() {
         if (this.getBookState().getBookStateEnum() == BookStateEnum.ABLE) {
@@ -35,16 +37,7 @@ public class Book {
         } else {
             this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
         }
-    }
 
-    @Builder
-    private Book(BookId id,String title){
-        this.title = title;
-        this.id = id;
-    }
-
-    public static Book createBook(BookTitleDTO bookTitleDTO,BookId id){
-        return Book.builder().title(bookTitleDTO.getTitle()).id(id).build();
     }
 
 }

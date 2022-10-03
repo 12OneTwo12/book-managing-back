@@ -17,7 +17,7 @@ import javax.persistence.Enumerated;
 @Setter(AccessLevel.PROTECTED)
 public class BookState {
 
-    @Column(name = "book_state", nullable = false,columnDefinition = "varchar(16) default 'ABLE'")
+    @Column(name = "book_state", nullable = false, columnDefinition = "varchar(16) default 'ABLE'")
     @Enumerated(EnumType.STRING)
     private BookStateEnum bookStateEnum;
 

@@ -1,6 +1,6 @@
 package dev.library.book.application;
 
-import dev.library.book.DTO.BookDTO;
+import dev.library.book.dto.BookDTO;
 import dev.library.book.domain.Book;
 import dev.library.book.domain.BookId;
 import dev.library.book.domain.BookState;
