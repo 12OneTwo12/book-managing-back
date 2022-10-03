@@ -27,7 +27,7 @@ public class CreateBookByAdminServiceImpl implements CreateBookByAdminService {
 
         long numberOfRows = bookRepository.count();
         BookId id = bookRepository.nextBookId(numberOfRows);
-        Book newBook =Book.createBook(bookTitleDTO,id);
+        Book newBook = Book.createBook(bookTitleDTO,id);
 
         Book result = bookRepository.save(newBook);
 
