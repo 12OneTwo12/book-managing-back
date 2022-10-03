@@ -1,6 +1,6 @@
 package dev.library.book.presentation;
 
-import dev.library.book.DTO.BookDTO;
+import dev.library.book.dto.BookDTO;
 import dev.library.book.application.BookStateService;
 import dev.library.book.application.ReturnBookStateService;
 import dev.library.book.domain.BookStateEnum;

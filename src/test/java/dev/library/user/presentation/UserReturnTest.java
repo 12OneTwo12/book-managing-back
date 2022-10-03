@@ -16,7 +16,7 @@ public class UserReturnTest {
 
     @Test
     public void userReturnTest(){
-        UserDTO dto = returnUserService.returnUserById("u-13-1");
+        UserDTO dto = returnUserService.returnUserById("u-g-0");
         System.out.println(dto);
     }
 

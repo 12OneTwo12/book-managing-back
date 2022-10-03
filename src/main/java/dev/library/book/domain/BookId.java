@@ -20,9 +20,6 @@ public class BookId implements Serializable {
     @Column(name = "book_id")
     private String id;
 
-
-    protected BookId() {}
-
     public BookId(String id) { this.id = id; }
 
     public String getId() { return id; }

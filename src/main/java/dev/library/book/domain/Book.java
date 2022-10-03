@@ -1,6 +1,6 @@
 package dev.library.book.domain;
 
-import dev.library.book.DTO.BookDTO;
+import dev.library.book.dto.BookDTO;
 import dev.library.book.dto.BookTitleDTO;
 import lombok.*;
 
@@ -30,6 +30,9 @@ public class Book {
         this.id = id;
         this.title = title;
         this.bookState = bookState;
+    }
+    public static Book createBook(BookId bookId, String title) {
+        return new Book(bookId, title, new BookState(BookStateEnum.ABLE));
     }
 
     public void convertStateToOpposite() {

@@ -2,6 +2,7 @@ package dev.library.user.domain;
 
 import dev.library.user.dto.UserDTO;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
@@ -14,7 +15,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Getter
-public class User {
+@DynamicInsert
+public class  User {
 
     @EmbeddedId
     private UserId id;
