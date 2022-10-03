@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Getter
-public class User {
+public class  User {
 
     @EmbeddedId
     private UserId id;
