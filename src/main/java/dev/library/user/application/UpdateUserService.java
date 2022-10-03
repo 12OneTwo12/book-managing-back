@@ -12,11 +12,10 @@ public class UpdateUserService {
     @Autowired
     UserRepository userRepository;
 
-    public User update(User updateUser) {
+    public void update(User updateStates) {
 
-        Rental rental = new Rental();
-        User newUser = rental.rentBook().getUser();
+        User updateUser = updateStates.afterRentBookUpdateUser();
 
-        return userRepository.save(newUser);
+        userRepository.save(updateUser);
     }
 }
