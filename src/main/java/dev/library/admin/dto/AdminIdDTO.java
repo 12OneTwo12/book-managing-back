@@ -1,6 +1,6 @@
-package dev.library.dto;
+package dev.library.admin.dto;
 
-import dev.library.user.domain.Admin;
+import dev.library.admin.domain.Admin;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

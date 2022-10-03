@@ -1,9 +1,7 @@
-package dev.library.user.domain;
+package dev.library.book.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import dev.library.book.dto.BookTitleDTO;
+import lombok.*;
 
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
@@ -24,5 +22,14 @@ public class Book {
 
     @Embedded
     private BookState bookState;
+
+    @Builder
+    private Book(BookId id,String title){
+        this.title = title;
+        this.id = id;
+    }
+    public static Book createBook(BookTitleDTO bookTitleDTO,BookId id){
+        return Book.builder().title(bookTitleDTO.getTitle()).id(id).build();
+    }
 
 }

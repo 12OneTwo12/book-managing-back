@@ -1,18 +1,12 @@
 package dev.library.user.domain;
 
-import dev.library.dto.UserDTO;
-import dev.library.user.application.ReturnUserService;
-import dev.library.user.repository.UserRepository;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 @Table(name = "users")
@@ -39,11 +33,9 @@ public class User {
         this.userState = userState;
     }
 
-    public User checkUserStateAndUpdate(){
+    public User checkUserStateAndUpdate(Boolean checkReturnDeadline){
 
         // 아이디로 값을 찾게되면
-        // TODO : 유저가 대여중인 책 기한 지났는지 확인 후 지나면 대여 불가로 상태 변경 후 return
-        // TODO : 유저 상태가 대여 불가라면 현재 RENT_FREE_DATE가 오늘 날짜를 지났는지 확인 후 안지났으면 그냥 반환
         if (this.getUserState().checkCurrentRentedBooks()){
             // 유저가 대출한 책 갯수가 2개 이상일 경우 그대로 반환
             return this;
@@ -55,12 +47,13 @@ public class User {
                             this.getUserState().getRentFreeDate(),
                             true);
                 }
+                // TODO : 유저가 대여중인 책 기한 지났는지 확인 후 지나면 대여 불가로 상태 변경 후 return
 
-//                    if (true){ // 만약 유저가 대출중인 책이 반납 기한이 지났으면 rentable을 false로 설정 후 반납
-//                        newUserState = new UserState(beforeCheckUser.getUserState().getCurrentRentedBooks(),
-//                                                     beforeCheckUser.getUserState().getRentFreeDate(),
-//                                                     false);
-//                    }
+                if (checkReturnDeadline){ // 만약 유저가 대출중인 책이 반납 기한이 지났으면 rentable을 false로 설정 후 반납
+                    newUserState = new UserState(this.getUserState().getCurrentRentedBooks(),
+                                                 this.getUserState().getRentFreeDate(),
+                                                     false);
+                }
 
                 User afterCheckUser = User.Request.toEntity(User.Request.builder().userId(this.getId())
                         .name(this.getName())

@@ -1,19 +1,21 @@
-package dev.library.user.application;
+package dev.library.admin.application;
 
-import dev.library.dto.AdminDTO;
-import dev.library.dto.AdminIdDTO;
-import dev.library.user.domain.Admin;
-import dev.library.user.repository.AdminRepository;
+import dev.library.admin.dto.AdminDTO;
+import dev.library.admin.dto.AdminIdDTO;
+import dev.library.admin.domain.Admin;
+import dev.library.admin.repository.AdminRepository;
 import dev.library.utils.encrypt.Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CreateAdminService {
+public class CreateAdminServiceImpl implements CreateAdminService {
 
     @Autowired
     AdminRepository adminRepository;
 
+    @Transactional
     public AdminIdDTO createAdmin(AdminDTO adminDTO){
 
         Encrypt encrypt = new Encrypt();
