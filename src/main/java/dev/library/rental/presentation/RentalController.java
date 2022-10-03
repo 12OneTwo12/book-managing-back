@@ -1,24 +1,23 @@
 package dev.library.rental.presentation;
 
-import dev.library.book.application.UpdateBookService;
-import dev.library.book.repository.BookRepository;
-import dev.library.dto.BookIdDTO;
-import dev.library.dto.RentalDTO;
-import dev.library.dto.UserDTO;
-import dev.library.dto.UserIdDTO;
-import dev.library.rental.application.UpdateRentalService;
+import dev.library.book.DTO.BookDTO;
+import dev.library.book.application.AfterRentBookService;
+import dev.library.book.application.ReturnBookStateService;
+import dev.library.book.domain.Book;
+import dev.library.book.domain.BookId;
+import dev.library.book.dto.BookIdDTO;
+import dev.library.rental.application.AfterRentBookUpdateRentalService;
+import dev.library.rental.domain.Rental;
+import dev.library.rental.dto.RentalDTO;
+import dev.library.user.application.AfterRentBookUserService;
+import dev.library.user.dto.UserDTO;
+import dev.library.user.dto.UserIdDTO;
 import dev.library.user.application.ReturnUserService;
-import dev.library.user.application.UpdateUserService;
 import dev.library.user.domain.User;
 import dev.library.user.domain.UserId;
 import dev.library.user.domain.UserState;
-import dev.library.user.repository.UserRepository;
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("rental")
 @RestController
@@ -27,35 +26,30 @@ public class RentalController {
 
     @Autowired
     ReturnUserService returnUserService;
+    @Autowired
+    ReturnBookStateService returnBookStateService;
 
     @Autowired
-    UpdateUserService updateUserService;
-
+    AfterRentBookUserService afterRentBookUserService;
     @Autowired
-    UpdateBookService updateBookService;
-
+    AfterRentBookService afterRentBookService;
     @Autowired
-    UpdateRentalService updateRentalService;
+    AfterRentBookUpdateRentalService afterRentBookUpdateRentalService;
 
-    public RentalDTO rentBook(@RequestBody UserIdDTO userIdDTO,
+    @PostMapping("/rentBook")
+    public void rentBook(@RequestBody UserIdDTO userIdDTO,
                               @RequestBody BookIdDTO bookIdDTO) {
 
-        UserDTO currentUserState = returnUserService.returnUserById(userIdDTO.getUserId());
-        UserId userId = new UserId(currentUserState.getId());
-        UserState newUserState = new UserState(currentUserState.getCurrentRentedBooks(), currentUserState.getRentFreeDate(),
-                currentUserState.getRentable());
-        updateUserService.update(User.Request.toEntity(User.Request.builder().userId(userId)
-                .name(currentUserState.getName())
-                .courseName(currentUserState.getCourseName())
-                .userState(newUserState)
-                .build()));
+        // id로 usertable 가져와서 상태 update
+        UserDTO userDTO = returnUserService.returnUserById(userIdDTO.getUserId());
+        User updatedUser = afterRentBookUserService.updateUserStateAfterRent(userDTO);
 
-        // id로 찾아온 currentBookState값을 parameter로 넣을 것.
-        updateBookService.update();
+        // id로 booktable 가져와서 상태 update
+        BookDTO bookDTO = returnBookStateService.returnBookStateById(bookIdDTO.getBookId());
+        Book updatedBook = afterRentBookService.updateBookStateAfterRent(bookDTO);
 
-        // update 후 user와 book 넣어서 rental 만들어주고 parameter로 넣을 것.
-        updateRentalService.update();
-
-        return null;
+        // rentalTable update
+        Rental updatedRental = afterRentBookUpdateRentalService.updateRental(updatedUser, updatedBook);
+        afterRentBookUpdateRentalService.updateRentalDate(updatedRental);
     }
 }

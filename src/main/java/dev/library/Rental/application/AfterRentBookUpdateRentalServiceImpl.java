@@ -1,20 +1,37 @@
 package dev.library.rental.application;
 
+import dev.library.book.domain.Book;
+import dev.library.rental.domain.RentalDate;
 import dev.library.rental.repository.RentalRepository;
 import dev.library.rental.domain.Rental;
+import dev.library.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UpdateRentalService {
+public class AfterRentBookUpdateRentalServiceImpl implements AfterRentBookUpdateRentalService{
 
     @Autowired
     RentalRepository rentalRepository;
 
-    public void update(Rental updateState) {
+    public Rental updateRental(User user, Book book) {
 
-        Rental updateRental = updateState.rentBook();
+        Rental updateRental = Rental.afterRentBook(user, book);
 
-        rentalRepository.save(updateRental);
+        return rentalRepository.save(updateRental);
     }
+
+    @Override
+    public void updateRentalDate(Rental updatedRental) {
+
+        // returndate 다시 설정해주기
+        RentalDate updateRentalDate = new RentalDate(updatedRental.getRentalDate().getRentDate(), updatedRental.getRentalDate().getReturnDate());
+        Rental updateRental = new Rental(updatedRental.getUser(), updatedRental.getBook(), updateRentalDate);
+        // returnDate 수정한 rental table update
+        rentalRepository.save(updateRental);
+
+    }
+
 }
