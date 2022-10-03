@@ -33,7 +33,7 @@ public class User {
         this.userState = userState;
     }
 
-    public User checkUserStateAndUpdate(){
+    public User checkUserStateAndUpdate(Boolean checkReturnDeadline){
 
         // 아이디로 값을 찾게되면
         if (this.getUserState().checkCurrentRentedBooks()){
@@ -49,11 +49,11 @@ public class User {
                 }
                 // TODO : 유저가 대여중인 책 기한 지났는지 확인 후 지나면 대여 불가로 상태 변경 후 return
 
-//                    if (true){ // 만약 유저가 대출중인 책이 반납 기한이 지났으면 rentable을 false로 설정 후 반납
-//                        newUserState = new UserState(beforeCheckUser.getUserState().getCurrentRentedBooks(),
-//                                                     beforeCheckUser.getUserState().getRentFreeDate(),
-//                                                     false);
-//                    }
+                if (checkReturnDeadline){ // 만약 유저가 대출중인 책이 반납 기한이 지났으면 rentable을 false로 설정 후 반납
+                    newUserState = new UserState(this.getUserState().getCurrentRentedBooks(),
+                                                 this.getUserState().getRentFreeDate(),
+                                                     false);
+                }
 
                 User afterCheckUser = User.Request.toEntity(User.Request.builder().userId(this.getId())
                         .name(this.getName())

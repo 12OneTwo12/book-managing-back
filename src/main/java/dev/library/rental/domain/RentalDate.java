@@ -18,4 +18,9 @@ public class RentalDate {
     @Column(name = "return_date")
     private LocalDate returnDate;
 
+    public Boolean checkReturnDeadline(){
+        LocalDate deadline = this.rentDate.plusDays(7);
+        return LocalDate.now().isAfter(deadline);
+    }
+
 }

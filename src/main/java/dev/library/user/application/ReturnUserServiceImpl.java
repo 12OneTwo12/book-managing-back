@@ -28,13 +28,22 @@ public class ReturnUserServiceImpl implements ReturnUserService {
         if (user.isEmpty()){
             return null;
         } else {
-            User afterCheckUser = user.get().checkUserStateAndUpdate();
+
+            List<Rental> list = rentalRepository.findByUserNoReturn(user.get());
+            Boolean checkDeadline;
+            if(list.size()>1){
+                checkDeadline = list.get(0).getRentalDate().checkReturnDeadline() || list.get(1).getRentalDate().checkReturnDeadline();
+            } else if (list.size() == 1) {
+                checkDeadline = list.get(0).getRentalDate().checkReturnDeadline();
+            } else {
+                checkDeadline = false;
+            }
+
+            User afterCheckUser = user.get().checkUserStateAndUpdate(checkDeadline);
             if (afterCheckUser.getUserState().rentableIsChangeOrNot(user.get())){
                 User updatedUser = userRepository.save(afterCheckUser);
 
                 UserDTO result = UserDTO.entityToDTO(updatedUser);
-
-                List<Rental> list = rentalRepository.findByUser(user.get());
 
                 result.setUsersBookRentalInfoDTO(list);
 
@@ -42,8 +51,6 @@ public class ReturnUserServiceImpl implements ReturnUserService {
             } else {
 
                 UserDTO result = UserDTO.entityToDTO(afterCheckUser);
-
-                List<Rental> list = rentalRepository.findByUser(user.get());
 
                 result.setUsersBookRentalInfoDTO(list);
 
