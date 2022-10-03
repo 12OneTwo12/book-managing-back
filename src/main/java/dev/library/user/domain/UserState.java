@@ -12,7 +12,7 @@ import java.time.LocalDate;
 //TODO: currentRentedBooks 필드 DB INSERT 시 기본값 0으로 적용되도록
 //현재 @DynamicInsert, columnDefinition = "int default 0" 적용 안됨
 public class UserState {
-    @Column(name = "current_rented_books",columnDefinition = "0")
+    @Column(name = "current_rented_books",columnDefinition = "int default '0'")
     private int currentRentedBooks;
 
     @Column(name = "rent_free_date")
