@@ -1,7 +1,6 @@
-package dev.library.book.DTO;
+package dev.library.book.dto;
 
 import dev.library.book.domain.Book;
-import dev.library.book.domain.BookState;
 import dev.library.book.domain.BookStateEnum;
 import lombok.Builder;
 import lombok.Getter;

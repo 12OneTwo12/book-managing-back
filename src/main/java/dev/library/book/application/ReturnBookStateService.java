@@ -1,6 +1,6 @@
 package dev.library.book.application;
 
-import dev.library.book.DTO.BookDTO;
+import dev.library.book.dto.BookDTO;
 
 public interface ReturnBookStateService {
 

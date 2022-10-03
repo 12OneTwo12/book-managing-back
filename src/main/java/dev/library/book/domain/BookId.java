@@ -14,7 +14,6 @@ import java.io.Serializable;
 
 @Embeddable
 @ToString
-@NoArgsConstructor
 public class BookId implements Serializable {
 
     @Column(name = "book_id")
