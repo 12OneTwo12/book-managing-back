@@ -97,7 +97,6 @@ public class AdminController {
         if(session.getAttribute("adminId") == null){
             return null;
         } else {
-            System.out.println(id.getUserId());
             return returnBarcodeService.returnUserBarcode(id.getUserId());
         }
     }

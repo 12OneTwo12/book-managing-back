@@ -37,6 +37,7 @@ public class Book {
         } else {
             this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
         }
+
     }
 
 }

@@ -25,8 +25,7 @@ public class CreateBookByAdminServiceImpl implements CreateBookByAdminService {
 
         Book result = bookRepository.save(newBook);
 
-        return result.getId().getId();
-//                .createBarcodeAndReturn();
+        return result.getId().getId().createBarcodeAndReturn();
     }
 
 }
