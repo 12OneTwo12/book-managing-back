@@ -1,16 +1,33 @@
 package dev.library.book.domain;
 
+
+import lombok.AccessLevel;
+
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.time.LocalDate;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Embeddable
 @ToString
+@Setter(AccessLevel.PROTECTED)
 public class BookState {
 
-    @Column(name = "able_or_not") // 대여 가능 여부
-    private boolean ableOrNot;
+    @Column(name = "book_state", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private BookStateEnum bookStateEnum;
 
+    protected BookState() {}
+
+    public BookStateEnum getBookStateEnum() {
+        return bookStateEnum;
+    }
+
+    public BookState(BookStateEnum bookStateEnum) {
+        this.bookStateEnum = bookStateEnum;
+    }
 }

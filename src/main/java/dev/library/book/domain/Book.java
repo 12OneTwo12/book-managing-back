@@ -23,6 +23,19 @@ public class Book {
     @Embedded
     private BookState bookState;
 
+    public Book(BookId id, String title, BookState bookState) {
+        this.id = id;
+        this.title = title;
+        this.bookState = bookState;
+    }
+
+    public void convertStateToOpposite() {
+        if (this.getBookState().getBookStateEnum() == BookStateEnum.ABLE) {
+            this.getBookState().setBookStateEnum(BookStateEnum.UNABLE);
+        } else {
+            this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
+        }
+
     @Builder
     private Book(BookId id,String title){
         this.title = title;
@@ -30,6 +43,7 @@ public class Book {
     }
     public static Book createBook(BookTitleDTO bookTitleDTO,BookId id){
         return Book.builder().title(bookTitleDTO.getTitle()).id(id).build();
+
     }
 
 }
