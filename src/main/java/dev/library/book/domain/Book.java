@@ -35,15 +35,16 @@ public class Book {
         } else {
             this.getBookState().setBookStateEnum(BookStateEnum.ABLE);
         }
+    }
 
     @Builder
     private Book(BookId id,String title){
         this.title = title;
         this.id = id;
     }
+
     public static Book createBook(BookTitleDTO bookTitleDTO,BookId id){
         return Book.builder().title(bookTitleDTO.getTitle()).id(id).build();
-
     }
 
 }
