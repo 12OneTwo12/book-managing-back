@@ -1,5 +1,6 @@
 package dev.library.user.domain;
 
+import dev.library.user.dto.UserDTO;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -70,6 +71,28 @@ public class  User {
             return this;
 
         }
+
+    }
+
+    public static User afterRentBookUpdateUser(UserDTO userDTO) {
+
+        // the number of rented books + 1
+        userDTO.setCurrentRentedBooks(userDTO.getCurrentRentedBooks() + 1);
+        if (userDTO.getCurrentRentedBooks() >= 2) {
+            userDTO.setRentable(false);
+        }
+        // userState update
+        UserState newUserState = new UserState(userDTO.getCurrentRentedBooks(), userDTO.getRentFreeDate(),
+                userDTO.getRentable());
+        // userId
+        UserId userId = new UserId(userDTO.getId());
+        User updateUser = User.Request.toEntity(User.Request.builder().userId(userId)
+                .name(userDTO.getName())
+                .courseName(userDTO.getCourseName())
+                .userState(newUserState)
+                .build());
+
+        return updateUser;
 
     }
 
