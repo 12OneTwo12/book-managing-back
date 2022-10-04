@@ -9,10 +9,11 @@ import java.time.LocalDate;
 
 @Embeddable
 @ToString
+@DynamicInsert
 //TODO: currentRentedBooks 필드 DB INSERT 시 기본값 0으로 적용되도록
 //현재 @DynamicInsert, columnDefinition = "int default 0" 적용 안됨
 public class UserState {
-    @Column(name = "current_rented_books")
+    @Column(name = "current_rented_books", columnDefinition = "int default 0", nullable = false)
     private int currentRentedBooks;
 
     @Column(name = "rent_free_date")
@@ -40,4 +41,12 @@ public class UserState {
     public boolean isRentable() {
         return rentable;
     }
+
+    public boolean checkCurrentRentedBooks(){ return currentRentedBooks >= 2; }
+
+    public boolean checkRentFreeDateIsEmpty(){ return rentFreeDate != null; }
+
+    public boolean rentFreeDateIsBeforeNow(){ return rentFreeDate.isBefore(LocalDate.now()); }
+
+    public boolean rentableIsChangeOrNot(User user){ return user.getUserState().isRentable() != rentable; }
 }

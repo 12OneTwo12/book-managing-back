@@ -1,12 +1,10 @@
 package dev.library.user.presentation;
 
-import dev.library.dto.UserDTO;
-import dev.library.user.application.ReturnUserService;
+import dev.library.user.dto.UserDTO;
+import dev.library.user.application.ReturnUserServiceImpl;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -14,11 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserReturnTest {
 
     @Autowired
-    ReturnUserService returnUserService;
+    ReturnUserServiceImpl returnUserService;
 
     @Test
     public void userReturnTest(){
-        UserDTO dto = returnUserService.returnUserById("u-13-1");
+        UserDTO dto = returnUserService.returnUserById("u-g-0");
         System.out.println(dto);
     }
 
