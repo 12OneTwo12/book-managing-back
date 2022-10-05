@@ -2,6 +2,7 @@ package dev.library.rental.domain;
 
 import lombok.Getter;
 import lombok.ToString;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

@@ -2,10 +2,7 @@ package dev.library.rental.domain;
 
 import dev.library.book.domain.Book;
 import dev.library.user.domain.User;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -30,5 +27,24 @@ public class Rental {
 
     @Embedded
     private RentalDate rentalDate;
+
+    @Builder
+    public Rental(User user, Book book) {
+        this.user = user;
+        this.book = book;
+    }
+
+    public Rental(User user, Book book, RentalDate rentalDate) {
+        this.user = user;
+        this.book = book;
+        this.rentalDate = rentalDate;
+    }
+
+    public static Rental afterRentBook(User user, Book book) {
+
+        Rental updateRental = Rental.builder().user(user).book(book).build();
+
+        return updateRental;
+    }
 
 }
