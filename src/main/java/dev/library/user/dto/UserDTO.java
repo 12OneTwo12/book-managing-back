@@ -23,6 +23,7 @@ public class UserDTO {
     private Boolean rentable;
     private LocalDate rentFreeDate;
     private int currentRentedBooks;
+    private int allowedCount;
 
     private List<UsersBookRentalInfoDTO> usersBookRentalInfoDTO;
 
@@ -33,6 +34,7 @@ public class UserDTO {
                                 .rentable(user.getUserState().isRentable())
                                 .rentFreeDate(user.getUserState().getRentFreeDate())
                                 .currentRentedBooks(user.getUserState().getCurrentRentedBooks())
+                                .allowedCount(2-user.getUserState().getCurrentRentedBooks())
                                 .build();
     }
 

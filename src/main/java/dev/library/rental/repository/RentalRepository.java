@@ -10,6 +10,6 @@ import java.util.List;
 public interface RentalRepository extends JpaRepository<Rental, Integer> {
     List<Rental> findByUser(User user);
 
-    @Query(value = "select * from rental where user = ? and return_date is null", nativeQuery = true)
+    @Query(value = "select * from rental where user_id = ? and return_date is null", nativeQuery = true)
     List<Rental> findByUserNoReturn(User user);
 }
