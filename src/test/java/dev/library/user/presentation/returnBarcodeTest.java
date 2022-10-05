@@ -13,8 +13,8 @@ public class returnBarcodeTest {
 
     @Test
     public void returnBarcodeTest(){
-         String resultBook = returnBarcodeService.returnBookBarcode("b-g-0");
-         String resultUser = returnBarcodeService.returnUserBarcode("u-g-2");
+         String resultBook = returnBarcodeService.returnBookBarcode("book-g-1");
+         String resultUser = returnBarcodeService.returnUserBarcode("user-g-1");
 
          System.out.println(resultBook);
 

@@ -15,7 +15,7 @@ public class CreateBookTest {
     @Test
     public void createBookTest(){
         BookTitleDTO dto = new BookTitleDTO();
-        dto.setTitle("노인과 바다");
+        dto.setTitle("한번에 성공하자 제발");
         String result = createBookByAdminService.createBook(dto);
         System.out.println(result);
     }

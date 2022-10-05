@@ -12,4 +12,7 @@ public interface RentalRepository extends JpaRepository<Rental, Integer> {
 
     @Query(value = "select * from rental where user_id = ? and return_date is null", nativeQuery = true)
     List<Rental> findByUserNoReturn(User user);
+
+    @Query(value = "select * from rental where book_id = ? and return_date is null", nativeQuery = true)
+    Rental findByBookId(String bookId);
 }

@@ -19,7 +19,7 @@ public class UserState {
     @Column(name = "rent_free_date")
     private LocalDate rentFreeDate;
 
-    @Column(name = "rentable") // 대여 가능 여부
+    @Column(name = "rentable", columnDefinition = "varchar(1) default 'Y'", nullable = false) // 대여 가능 여부
     private boolean rentable;
 
     public UserState() {} // TODO: Q1. 여긴 public, UserId는 protected

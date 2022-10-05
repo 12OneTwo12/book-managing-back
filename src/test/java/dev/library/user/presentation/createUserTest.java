@@ -15,7 +15,7 @@ public class createUserTest {
     @Test
     public void createUser(){
 
-        User.Request request = User.Request.builder().name("최예은").courseName("인공지능 11기").build();
+        User.Request request = User.Request.builder().name("정정일").courseName("인공지능 13기").build();
 
         String result = createUserByAdminService.saveUser(request);
 
