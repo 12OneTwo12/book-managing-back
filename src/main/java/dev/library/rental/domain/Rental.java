@@ -1,4 +1,4 @@
-package dev.library.rental.domain;
+package dev.library.Rental.domain;
 
 import dev.library.book.domain.Book;
 import dev.library.user.domain.User;

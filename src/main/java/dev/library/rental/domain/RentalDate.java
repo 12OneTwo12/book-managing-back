@@ -1,6 +1,5 @@
-package dev.library.rental.domain;
+package dev.library.Rental.domain;
 
-import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -9,7 +8,6 @@ import java.time.LocalDate;
 
 @Embeddable
 @ToString
-@Getter
 public class RentalDate {
 
     @Column(name = "rent_date")
@@ -17,10 +15,5 @@ public class RentalDate {
 
     @Column(name = "return_date")
     private LocalDate returnDate;
-
-    public Boolean checkReturnDeadline(){
-        LocalDate deadline = this.rentDate.plusDays(7);
-        return LocalDate.now().isAfter(deadline);
-    }
 
 }
