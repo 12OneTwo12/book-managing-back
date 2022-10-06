@@ -1,9 +1,8 @@
-package dev.library.rental.domain;
+package dev.library.Rental.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
