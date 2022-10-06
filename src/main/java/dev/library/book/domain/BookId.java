@@ -35,7 +35,7 @@ public class BookId implements Serializable {
 
             BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, newId);
             generator.getParameters().setResolution(400);
-            String addrs = "C:\\Users\\playdata\\Desktop\\barcode\\book\\";
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\book\\";
             File file = new File(addrs + newId + ".png");
             try {
                 generator.save(addrs + newId + ".png");
@@ -52,7 +52,7 @@ public class BookId implements Serializable {
         } else {
 
             String newId = this.id;
-            String addrs = "C:\\Users\\playdata\\Desktop\\barcode\\book\\";
+            String addrs = "C:\\Users\\J\\Desktop\\barcode\\book\\";
             File file = new File(addrs + newId + ".png");
 
             if (!file.exists()) {

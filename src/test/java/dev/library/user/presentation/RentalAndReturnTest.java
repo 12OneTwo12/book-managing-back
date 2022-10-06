@@ -85,18 +85,18 @@ public class RentalAndReturnTest {
 
         AfterReturnDTO result = null;
         List<BookDTO> bookList = new ArrayList<>();
-        List<UserDTO> userList = new ArrayList<>();
+        List<RentalDTO> rentalList = new ArrayList<>();
 
         for(String bookId : bookIdsDTO.getBookId()){
             result = returnLentBookService.returnLentBook(bookId);
             if(result != null){
                 bookList.add(result.getBookDTO().get(0));
-                userList.add(result.getUserDTO().get(0));
+                rentalList.add(result.getRentalDTO().get(0));
             }
         }
 
         result.setBookDTO(bookList);
-        result.setUserDTO(userList);
+        result.setRentalDTO(rentalList);
 
         System.out.println(result);
 
