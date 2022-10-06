@@ -11,6 +11,7 @@ import dev.library.rental.application.RentBookService;
 import dev.library.rental.application.ReturnLentBookService;
 import dev.library.rental.domain.Rental;
 import dev.library.rental.dto.AfterReturnDTO;
+import dev.library.rental.dto.BookIdsDTO;
 import dev.library.rental.dto.RentalDTO;
 import dev.library.rental.dto.UserAndBookIdDTO;
 import dev.library.user.application.AfterRentBookUserService;
@@ -22,6 +23,9 @@ import dev.library.user.domain.UserId;
 import dev.library.user.domain.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("rental")
 @RestController
@@ -63,16 +67,36 @@ public class RentalController {
 //    }
 
     @PostMapping("/rentBook")
-    public RentalDTO rentBook(@RequestBody UserAndBookIdDTO userAndBookIdDTO) {
+    public List<RentalDTO> rentBook(@RequestBody UserAndBookIdDTO userAndBookIdDTO) {
         // rentalTable update
-        RentalDTO result = rentBookService.rentBook(userAndBookIdDTO);
+
+        List<RentalDTO> result = new ArrayList<>();
+        if (userAndBookIdDTO!=null){
+            for(String bookId : userAndBookIdDTO.getBookId()){
+                result.add(rentBookService.rentBook(userAndBookIdDTO.getUserId(),bookId));
+            }
+        } else {
+            return null;
+        }
         return result;
     }
 
     @PostMapping("/returnBook")
-    public AfterReturnDTO returnBook(@RequestBody BookIdDTO bookIdDTO) {
+    public AfterReturnDTO returnBook(@RequestBody BookIdsDTO bookIdsDTO) {
+        AfterReturnDTO result = null;
+        List<BookDTO> bookList = new ArrayList<>();
+        List<RentalDTO> rentalList = new ArrayList<>();
 
-        AfterReturnDTO result = returnLentBookService.returnLentBook(bookIdDTO.getBookId());
+        for(String bookId : bookIdsDTO.getBookId()){
+            result = returnLentBookService.returnLentBook(bookId);
+            if(result != null){
+                bookList.add(result.getBookDTO().get(0));
+                rentalList.add(result.getRentalDTO().get(0));
+            }
+        }
+
+        result.setBookDTO(bookList);
+        result.setRentalDTO(rentalList);
 
         return result;
     }

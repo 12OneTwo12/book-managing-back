@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class UserAndBookIdDTO {
-    private String userId;
+public class BookIdsDTO {
     private List<String> bookId;
 }

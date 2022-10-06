@@ -6,5 +6,6 @@ import dev.library.rental.dto.UserAndBookIdDTO;
 import dev.library.user.dto.UserIdDTO;
 
 public interface RentBookService {
-    RentalDTO rentBook(UserAndBookIdDTO userAndBookIdDTO);
+    RentalDTO rentBook(String userId, String bookId);
+
 }
