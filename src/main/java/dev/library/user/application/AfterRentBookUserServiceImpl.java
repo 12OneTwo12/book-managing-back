@@ -5,6 +5,7 @@ import dev.library.user.dto.UserDTO;
 import dev.library.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ public class AfterRentBookUserServiceImpl implements AfterRentBookUserService{
     @Autowired
     UserRepository userRepository;
 
+    @Transactional
     public User updateUserStateAfterRent(UserDTO userDTO) {
 
         User updateUser = User.afterRentBookUpdateUser(userDTO);

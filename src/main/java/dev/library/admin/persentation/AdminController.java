@@ -71,43 +71,43 @@ public class AdminController {
     }
 
     @PostMapping("/createUser")
-    public String registerUser(@RequestBody User.Request request, HttpSession session) {
+    public String registerUser(@RequestBody User.Request request) {
 
-        if(session.getAttribute("adminId") == null){
-            return null;
-        } else {
+//        if(session.getAttribute("adminId") == null){
+//            return null;
+//        } else {
             return createUserService.saveUser(request);
-        }
+//        }
 
 
     }
 
     @PostMapping("/createBook")
-    public String registerBook(@RequestBody BookTitleDTO bookTitleDTO, HttpSession session){
-        session.setAttribute("adminId","admin");
-        if(session.getAttribute("adminId") == null){
-            return null;
-        } else {
+    public String registerBook(@RequestBody BookTitleDTO bookTitleDTO){
+//        session.setAttribute("adminId","admin");
+//        if(session.getAttribute("adminId") == null){
+//            return null;
+//        } else {
             return createBookByAdminService.createBook(bookTitleDTO);
-        }
+//        }
     }
 
     @PostMapping("/returnUserBarcode")
-    public String returnUserBarcode(@RequestBody UserIdDTO id, HttpSession session){
-        if(session.getAttribute("adminId") == null){
-            return null;
-        } else {
+    public String returnUserBarcode(@RequestBody UserIdDTO id){
+//        if(session.getAttribute("adminId") == null){
+//            return null;
+//        } else {
             return returnBarcodeService.returnUserBarcode(id.getUserId());
-        }
+//        }
     }
 
     @PostMapping("/returnBookBarcode")
-    public String returnBookBarcode(@RequestBody BookIdDTO id, HttpSession session){
-        if(session.getAttribute("adminId") == null){
-            return null;
-        } else {
+    public String returnBookBarcode(@RequestBody BookIdDTO id){
+//        if(session.getAttribute("adminId") == null){
+//            return null;
+//        } else {
             return returnBarcodeService.returnBookBarcode(id.getBookId());
-        }
+//        }
     }
 
 }
